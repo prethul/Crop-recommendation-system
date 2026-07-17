@@ -3,17 +3,17 @@ import pandas as pd
 import joblib
 import matplotlib.pyplot as plt
 
-# ---------------- PAGE CONFIG ----------------
+# PAGE CONFIG
 st.set_page_config(
     page_title="Smart Crop Recommendation System",
     page_icon="🌱",
     layout="wide"
 )
 
-# ---------------- LOAD MODEL ----------------
+# LOAD MODEL 
 model = joblib.load("model.pkl")
 
-# ---------------- CROP MAPPING ----------------
+#  CROP MAPPING 
 crop_dict = {
     1: "Rice 🌾 (ধান)",
     2: "Maize 🌽 (ভুট্টা)",
@@ -38,7 +38,7 @@ crop_dict = {
     21: "Jute 🌾 (পাট)",
     22: "Coffee ☕ (কফি)"
 }
-# ---------------- CUSTOM CSS ----------------
+#  CUSTOM CSS 
 st.markdown("""
 <style>
 
@@ -95,7 +95,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- SIDEBAR ----------------
+# SIDEBAR 
 with st.sidebar:
 
     st.title("🌾 Crop AI Dashboard")
@@ -128,7 +128,7 @@ This project recommends the most suitable crop based on:
     st.write("Input Features: 7")
     st.write("Output Classes: 22")
 
-# ---------------- HEADER ----------------
+#  HEADER 
 st.markdown(
     '<div class="main-title">🌱 Smart Crop Recommendation System</div>',
     unsafe_allow_html=True
@@ -141,7 +141,7 @@ st.markdown(
 
 st.write("")
 
-# ---------------- INPUT ----------------
+#  INPUT 
 col1, col2 = st.columns(2)
 
 with col1:
@@ -161,7 +161,7 @@ with col2:
 
 st.write("")
 
-# ---------------- PREDICTION ----------------
+#  PREDICTION 
 if st.button("🚀 Recommend Best Crop"):
 
     input_data = pd.DataFrame(
@@ -199,7 +199,7 @@ if st.button("🚀 Recommend Best Crop"):
 
     st.progress(confidence/100)
 
-    # ---------------- INPUT SUMMARY ----------------
+#INPUT SUMMARY 
     st.subheader("📋 Input Summary")
 
     summary = pd.DataFrame({
@@ -219,7 +219,7 @@ if st.button("🚀 Recommend Best Crop"):
 
     st.dataframe(summary,use_container_width=True)
 
-    # ---------------- BANGLA EXPLANATION ----------------
+# BANGLA EXPLANATION
     st.subheader("🇧🇩 কেন এই ফসলটি নির্বাচন করা হয়েছে?")
 
     st.success(f"""
@@ -248,8 +248,7 @@ if st.button("🚀 Recommend Best Crop"):
 
 ✅ The AI model predicted {crop_name} with the highest probability.
 """)
-
-    # ---------------- TIPS ----------------
+# TIPS 
     tips = {
         "Rice 🌾":"💧 Requires high water availability and irrigation.",
         "Maize 🌽":"☀️ Prefers warm weather and moderate rainfall.",
@@ -262,7 +261,7 @@ if st.button("🚀 Recommend Best Crop"):
     if crop_name in tips:
         st.warning(tips[crop_name])
 
-    # ---------------- FEATURE IMPORTANCE ----------------
+# FEATURE IMPORTANCE 
     try:
         st.subheader("📊 Feature Importance")
 
@@ -283,7 +282,7 @@ if st.button("🚀 Recommend Best Crop"):
     except:
         pass
 
-# ---------------- FOOTER ----------------
+#  FOOTER 
 st.markdown("""
 <div class="footer">
 <hr>
